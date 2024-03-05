@@ -1,6 +1,7 @@
 from collections import UserDict
 from error_manager import input_error
 
+
 class Field:
     def __init__(self, value):
         self.value = value
@@ -29,15 +30,19 @@ class Record:
     def __init__(self, name):
         self.name = Name(name)
         self.phones = []
+
     @input_error
     def add_phone(self, phone):
         self.phones.append(phone)
+
     @input_error
     def find_phone(self, phone):
         return self.phones[self.phones.index(phone)]
+
     @input_error
     def edit_phone(self, old_phone, new_phone):
         self.phones[self.phones.index(old_phone)] = new_phone
+
     @input_error
     def remove_phone(self, phone):
         return self.phones.pop(self.phones.index(phone))
@@ -52,9 +57,11 @@ class AddressBook(UserDict):
         to_update = {record.name.__str__(): record}
         self.data.update(to_update)
         print(f'Contact {record.name} was added!')
+
     @input_error
     def find(self, name):
         return self.data[name]
+
     @input_error
     def delete(self, name):
         user = self.data.pop(name)
@@ -87,9 +94,12 @@ def main():
                 user_phone = Phone(i).__str__()
                 user_record.add_phone(user_phone)
             book.add_record(user_record)
+            print(book)
 
         elif command == "find":
-            name = args[0]   # It always makes name a list, and I have no idea how to go around it without this. I NEED HELP!
+            # It always makes name a list, and I have no idea how to go around
+            # it without this. I NEED HELP!
+            name = args[0]
             print(book.find(name))
         elif command == "delete":
             name = args[0]
