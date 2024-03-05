@@ -87,7 +87,6 @@ def main():
                 user_phone = Phone(i).__str__()
                 user_record.add_phone(user_phone)
             book.add_record(user_record)
-            print(book)
 
         elif command == "find":
             name = args[0]   # It always makes name a list, and I have no idea how to go around it without this. I NEED HELP!
